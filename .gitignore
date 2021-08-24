@@ -1,1 +1,5 @@
 /.vs
+/EducationNoteApi/obj
+/EducationNoteApi/bin
+/EducationNoteApi/appsettings.Development.json
+/EducationNoteApi/sheet-api-cd0dad64334b_backup.json
