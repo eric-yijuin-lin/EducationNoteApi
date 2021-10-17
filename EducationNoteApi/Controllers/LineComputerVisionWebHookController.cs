@@ -18,7 +18,7 @@ namespace isRock.Template
         [HttpPost]
         public IActionResult POST()
         {
-            var AdminUserId = "_______U5e60294b8c__AdminUserId__02d6295b621a_____";
+            var AdminUserId = "_________AdminUserId_______";
 
             try
             {
