@@ -29,7 +29,7 @@ namespace WebApplication4.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<DailyMissionRecord> Get()
+        public IEnumerable<DailyMissionRecord> Get(int? point, string? type)
         {
             var configSection = _config.GetSection("DailyMissionSheet");
             string credential = configSection["CredentialPath"];
@@ -38,7 +38,17 @@ namespace WebApplication4.Controllers
             string range = configSection["Range"];
 
             var sheetContent = _sheetService.GetGoogleSheetContent(credential, sheetId, tabName, range);
-            var result = DailyMissionRecord.ParseFromGoogleSheetContent(sheetContent, true);
+            var result = DailyMissionRecord.ParseFromGoogleSheetContent(sheetContent, true).AsEnumerable();
+            
+            if (point > 0)
+            {
+                result = result.Where(x => x.Point == point);
+            }
+            if (!string.IsNullOrEmpty(type))
+            {
+                result = result.Where(x => x.MissionType == type);
+            }
+
             return result;
         }
     }
